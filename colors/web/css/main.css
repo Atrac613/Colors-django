@@ -1,0 +1,32 @@
+.color-bar {
+    margin-left: 0px;
+    margin-top: 233px;
+}
+
+.color-bar li {
+    float: left;
+    list-style-type: none;
+    width: 75px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+
+.color-bar li.c1 {
+    background-color: #0b3951;
+    border-bottom-left-radius: 7px; 
+}
+
+.color-bar li.c2 {
+    background-color: #030a10;
+}
+
+.color-bar li.c3 {
+    background-color: #396c8b;
+}
+
+.color-bar li.c4 {
+    background-color: #2f99d7;
+    border-bottom-right-radius: 7px;
+}

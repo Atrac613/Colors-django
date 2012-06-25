@@ -1,0 +1,72 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="container">
+
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <a class="brand" href="#">Colors</a>
+
+        <ul class="nav">
+          <li class="active">
+            <a href="#">Home</a>
+          </li>
+          <li><a href="#">iPhone Apps</a></li>
+          <li><a href="#">API</a></li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4" style="border-radius: 6px; width:300px; height:263px;background-image: url('/static/images/cover1-1.jpg');">
+      <ul class="color-bar">
+        <li class="c1">#0b3953</li>
+        <li class="c2">#030a10</li>
+        <li class="c3">#396c8b</li>
+        <li class="c4">#2f99d7</li>
+      </ul>
+    </div>
+    <div class="span8">
+      <div class="hero-unit">
+        <h1>Make your color.</h1>
+          <p>Color is My Identity, My beauty, And My Life.</p>
+          <p>
+            <a class="btn btn-primary btn-large">
+              Learn more
+            </a>
+          </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="span8">
+        <h2 style="font-size:50px;margin-bottom: 10px;">Find your color.</h2>
+        <p class="lead">Extract color of your photo on iPhone App.</p>
+    </div>
+    <div class="span4" style="border-radius: 6px; width:300px; height:263px;background-image: url('/static/images/iphone.jpg');">
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span8">
+        <h2 style="font-size:50px;margin-bottom: 10px;">Sync your color.</h2>
+        <p class="lead">Sync Full-Color LED on your Arduino.</p>
+    </div>
+    <div class="span4" style="border-radius: 6px; width:300px; height:263px;background-image: url('/static/images/arduino.jpg');">
+      
+    </div>
+  </div>
+
+<footer>
+  <div class="container">
+    <p>&copy; atrac613.io</p>
+  </div>
+</footer>
+
+{% endblock %}

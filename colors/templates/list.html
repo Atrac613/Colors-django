@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+{% for image in image_list %}
+<a href="/p/{{ image.page_id }}"><img src="https://s3.amazonaws.com/colors-static/{{ image.filename }}.jpg" width="100" /></a>
+{% endfor %}
+
+{% endblock %}

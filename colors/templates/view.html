@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="span4 offset4">
+        //your content here gets centered of the page
+<img src="https://s3.amazonaws.com/colors-static/{{ filename }}" />
+<br />
+{% for color in colors.items %}
+<div style="width:100px;height:20px;background-color:{{ color.1 }};"><a href="/f/{{ color.0 }}">{{ color.1 }}</a></div>
+{% endfor %}
+    </div>
+</div>
+
+{% endblock %}

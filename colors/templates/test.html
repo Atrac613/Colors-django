@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<form action="/api/upload" method="post" enctype="multipart/form-data">
+<input type="hidden" name="redirect" value="true" />
+<input type="file" name="file" />
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

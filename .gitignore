@@ -1,0 +1,6 @@
+settings.py
+*.pyc
+colors/tmp/images/*.jpg
+colors/tmp/images/*.png
+colors/web/uploads/*.jpg
+
