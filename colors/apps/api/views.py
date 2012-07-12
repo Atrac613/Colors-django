@@ -16,6 +16,8 @@ from django.core.files.storage import default_storage
 from colors.apps.api.models import UploadFiles
 from colors.apps.api.models import ImageRGB
 from colors.apps.api.models import ImageHSV
+from colors.apps.api.models import ColorNameJa
+from colors.apps.api.models import ColorNameEn
 from colors.apps.api.forms import UploadFilesForm
 
 from colors.common import gen_imagekey
@@ -23,8 +25,10 @@ from colors.common import gen_thumbnail
 from colors.common import get_colors
 from colors.common import get_colors_recursive
 from colors.common import rgb_to_hex
+from colors.common import hex_to_rgb
 from colors.handle import handle_uploaded_file
 
+from colors.settings import BASE_DIR
 from colors.settings import STATICFILES_DIRS
 from colors.settings import MEDIA_ROOT
 
@@ -86,3 +90,56 @@ def upload(request):
 
     else:
         raise Http404
+
+def findColorName(request, color_id):
+    try:
+        rgb = hex_to_rgb('#%s' % color_id)
+    except:
+        raise Http404
+
+    name_list_ja = None
+    try:
+        name_list_ja = ColorNameJa.objects.select_related()
+        name_list_ja = name_list_ja.extra(
+            select = {
+                'difference': 'POW((%d-red),2) + POW((%d-green),2) + POW((%d-blue),2)' % rgb
+
+            },
+            order_by = {'difference'}
+        )[:1000]
+    except:
+        pass
+
+    name_list_en = None
+    try:
+        name_list_en = ColorNameEn.objects.select_related()
+        name_list_en = name_list_en.extra(
+            select = {
+                'difference': 'POW((%d-red),2) + POW((%d-green),2) + POW((%d-blue),2)' % rgb
+
+            },
+            order_by = {'difference'}
+        )[:1000]
+    except:
+        pass
+
+    name_result = []
+
+    for row in name_list_ja:
+        if row.difference < 2000:
+            name_result.append({
+                'name': '%s(%s)' % (row.name, row.name_yomi),
+                'hex': rgb_to_hex((row.red, row.green, row.blue)),
+                'lang': 'ja_JP'
+            })
+
+    for row in name_list_en:
+        if row.difference < 2000:
+            name_result.append({
+                'name': row.name,
+                'hex': rgb_to_hex((row.red, row.green, row.blue)),
+                'lang': 'en_US'
+            })
+
+    return HttpResponse(simplejson.dumps(name_result))
+
